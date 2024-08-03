@@ -9,7 +9,8 @@ Date: 05/2024
 
 
 class Board(object):
-    # constant board size
+
+    # constant board size - scalable
     ROWS = 6
     COLUMNS = 7
 
@@ -28,21 +29,21 @@ class Board(object):
         for row in range(self.ROWS - 1, -1, -1):
             if self.board[row][column] == " ":
                 self.board[row][column] = piece
-                self.moveCount += 1  # Increment move count here
+                self.moveCount += 1  # Increment move count to eventually find a drawn position
                 return
         print("Invalid Move: Column is full")
 
-    def print_board(self):
+    def print_board(self):  # draws the board on the terminal
         for col in range(1, self.COLUMNS + 1):  # number columns at the top
             print(f"   {col}  ", end="")
         print()
         for row in range(self.ROWS):
-            print("-" * 43)
+            print("-" * (self.ROWS * self.COLUMNS + 1))
             print("| ", end=" ")
             for col in range(self.COLUMNS):
                 print(self.board[row][col], " | ", end=" ")
             print()
-        print("-" * 43)
+        print("-" * (self.ROWS * self.COLUMNS + 1))
         for col in range(1, self.COLUMNS + 1):  # number columns at the bottom
             print(f"   {col}  ", end="")
         print()
